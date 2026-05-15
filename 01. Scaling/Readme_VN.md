@@ -8,6 +8,10 @@ Mở rộng quy mô một hệ thống để hỗ trợ hàng triệu người d
 ## Phần 1: Thiết lập máy chủ đơn lẻ (Single Server Setup)
 Ban đầu, tất cả các thành phần (ứng dụng web, cơ sở dữ liệu, bộ nhớ đệm) đều chạy trên một máy chủ duy nhất.
 
+<div style="margin-left:3rem">
+   <img src="./images/single-server.png" width="400" />
+</div>
+
 ### Luồng yêu cầu (Request Flow)
 1. Người dùng truy cập ứng dụng thông qua tên miền (ví dụ: `api.mysite.com`), được phân giải thành địa chỉ IP bằng DNS.
 2. Địa chỉ IP của máy chủ web được trả về trình duyệt hoặc ứng dụng di động.
@@ -21,6 +25,10 @@ Ban đầu, tất cả các thành phần (ứng dụng web, cơ sở dữ liệ
 
 ## Phần 2: Tách biệt cơ sở dữ liệu (Database Separation)
 Khi lượng người dùng tăng lên, cơ sở dữ liệu được chuyển sang một máy chủ chuyên dụng để cho phép mở rộng độc lập các tầng web và cơ sở dữ liệu.
+
+<div style="margin-left:3rem">
+   <img src="./images/database.png" width="400" />
+</div>
 
 ### Lựa chọn cơ sở dữ liệu (Database Choices)
 
@@ -51,6 +59,11 @@ Khi lượng người dùng tăng lên, cơ sở dữ liệu được chuyển s
 ---
 
 ## Phần 4: Bộ cân bằng tải (Load Balancer)
+
+<div style="margin-left:3rem">
+   <img src="./images/load-balancer.png" width="400" />
+</div>
+
 Bộ cân bằng tải phân phối lưu lượng truy cập giữa nhiều máy chủ. Lợi ích bao gồm:
 1. **Tính dự phòng (Redundancy):** Nếu một máy chủ ngoại tuyến, lưu lượng truy cập sẽ được chuyển hướng sang máy chủ khác.
 2. **Khả năng mở rộng (Scalability):** Dễ dàng thêm máy chủ để xử lý các đợt lưu lượng truy cập tăng đột biến.
@@ -58,6 +71,11 @@ Bộ cân bằng tải phân phối lưu lượng truy cập giữa nhiều máy
 ---
 
 ## Phần 5: Sao chép cơ sở dữ liệu (Database Replication)
+
+<div style="margin-left:3rem">
+   <img src="./images/database-replication.png" width="400" />
+</div>
+
 ### Mô hình Master-Slave
 - **Master Database:** Xử lý các thao tác ghi (write). Tất cả các lệnh sửa đổi dữ liệu như insert, delete hoặc update phải được gửi đến master.
 - **Slave Databases:** Xử lý các thao tác đọc (read), cải thiện hiệu suất và độ tin cậy. Thông thường số lượng slave sẽ nhiều hơn master vì thao tác đọc thường chiếm đa số.
@@ -75,6 +93,10 @@ Bộ cân bằng tải phân phối lưu lượng truy cập giữa nhiều máy
 ## Phần 6: Bộ nhớ đệm (Caching)
 Bộ nhớ đệm lưu trữ dữ liệu được truy cập thường xuyên trong bộ nhớ để giảm tải cho cơ sở dữ liệu. Tầng cache nhanh hơn nhiều so với cơ sở dữ liệu.
 
+<div style="margin-left:3rem">
+   <img src="./images/cache.png" width="500" />
+</div>
+
 ### Các cân nhắc khi sử dụng Cache
 1. **Trường hợp sử dụng:** Sử dụng khi dữ liệu được đọc thường xuyên nhưng ít khi thay đổi.
 2. **Chính sách hết hạn (Expiration):** Dữ liệu hết hạn sẽ bị xóa khỏi cache.
@@ -87,6 +109,10 @@ Bộ nhớ đệm lưu trữ dữ liệu được truy cập thường xuyên tr
 ## Phần 7: Mạng phân phối nội dung (CDN)
 CDN cải thiện thời gian tải bằng cách lưu trữ nội dung tĩnh (hình ảnh, CSS, JS) trên các máy chủ phân tán theo địa lý.
 
+<div style="margin-left:3rem">
+   <img src="./images/cdn.png" width="400" />
+</div>
+
 ### Quy trình làm việc
 1. Người dùng yêu cầu nội dung từ máy chủ CDN gần nhất.
 2. Nếu không có sẵn, nội dung sẽ được lấy từ máy chủ gốc (origin) và được lưu vào cache của CDN.
@@ -98,10 +124,19 @@ Bằng cách di chuyển dữ liệu phiên (session) sang một kho lưu trữ 
 1. Mở rộng ngang dễ dàng hơn.
 2. Tự động mở rộng (auto-scaling) dựa trên lưu lượng truy cập.
 
+<div style="margin-left:3rem">
+   <img src="./images/stateless.png" width="400" />
+</div>
+
 ---
 
 ## Phần 9: Thiết lập đa trung tâm dữ liệu (Multi-Data Center Setup)
 Triển khai trên nhiều trung tâm dữ liệu giúp cải thiện tính sẵn sàng và giảm độ trễ.
+
+<div style="margin-left:3rem">
+   <img src="./images/data-center.png" width="400" />
+</div>
+
 1. **Định tuyến GeoDNS:** Hướng người dùng đến trung tâm dữ liệu gần nhất.
 2. **Sao chép dữ liệu:** Đồng bộ hóa dữ liệu giữa các trung tâm để ngăn chặn sự không nhất quán.
 
@@ -109,12 +144,22 @@ Triển khai trên nhiều trung tâm dữ liệu giúp cải thiện tính sẵ
 
 ## Phần 10: Hàng đợi tin nhắn (Message Queue)
 Hàng đợi tin nhắn hỗ trợ giao tiếp bất đồng bộ, đóng vai trò như một bộ đệm và phân phối các yêu cầu bất đồng bộ.
+
+<div style="margin-left:3rem">
+   <img src="./images//message-queue.png" width="500" />
+</div>
+
 - **Producers (Người sản xuất):** Tạo và gửi tin nhắn vào hàng đợi.
 - **Consumers (Người tiêu dùng):** Kết nối với hàng đợi và thực hiện các hành động được định nghĩa trong tin nhắn.
 
 ---
 
 ## Phần 11: Nhật ký (Logging), Chỉ số (Metrics) và Tự động hóa (Automation)
+
+<div style="margin-left:3rem">
+   <img src="./images/logging.png" width="400" />
+</div>
+
 1. **Logging:** Theo dõi lỗi và sức khỏe hệ thống.
 2. **Metrics:** Cung cấp thông tin chi tiết về hiệu suất và hoạt động của người dùng.
 3. **Automation:** Hợp lý hóa việc kiểm thử, triển khai và mở rộng quy mô.
@@ -150,4 +195,3 @@ Hàng đợi tin nhắn hỗ trợ giao tiếp bất đồng bộ, đóng vai tr
 5. Tách biệt (**Decouple**) các thành phần để linh hoạt hơn.
 
 Chương này cung cấp nền tảng vững chắc để xây dựng các hệ thống có khả năng xử lý hàng triệu người dùng.
-.
