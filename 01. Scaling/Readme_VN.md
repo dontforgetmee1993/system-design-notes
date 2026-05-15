@@ -126,6 +126,11 @@ Hàng đợi tin nhắn hỗ trợ giao tiếp bất đồng bộ, đóng vai tr
 - Thêm tài nguyên phần cứng nhưng có giới hạn về vật lý và chi phí, dễ gặp rủi ro điểm lỗi duy nhất.
 
 ### Mở rộng ngang (Sharding)
+
+<div style="margin-left:3rem">
+   <img src="./images/horizontal-scaling.png" width="400" />
+</div>
+
 - Chia nhỏ cơ sở dữ liệu lớn thành các phần nhỏ hơn gọi là shards. Mỗi shard có cùng lược đồ (schema) nhưng dữ liệu là duy nhất.
 - **Sharding key** là cực kỳ quan trọng để phân phối dữ liệu đồng đều.
 
@@ -145,3 +150,4 @@ Hàng đợi tin nhắn hỗ trợ giao tiếp bất đồng bộ, đóng vai tr
 5. Tách biệt (**Decouple**) các thành phần để linh hoạt hơn.
 
 Chương này cung cấp nền tảng vững chắc để xây dựng các hệ thống có khả năng xử lý hàng triệu người dùng.
+.
